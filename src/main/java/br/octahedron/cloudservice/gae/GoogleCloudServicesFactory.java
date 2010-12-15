@@ -36,17 +36,7 @@ import br.octahedron.cotopaxi.cloudservice.URLFetchFacade;
  */
 public class GoogleCloudServicesFactory implements CloudServicesFactory {
 
-	private static final GoogleCloudServicesFactory instance = new GoogleCloudServicesFactory();
-
-	public static GoogleCloudServicesFactory getInstance() {
-		return instance;
-	}
-
 	private static final String DEFAULT_URL_PREFIX = "/tasks/";
-
-	private GoogleCloudServicesFactory() {
-		// nothing to do
-	}
 
 	/*
 	 * (non-Javadoc)
