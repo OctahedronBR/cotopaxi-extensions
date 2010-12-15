@@ -47,7 +47,14 @@ public class PersistenceManagerPool {
 
 	protected boolean isPersistenceManagerOpened() {
 		PersistenceManager pm = this.pool.get();
-		return !pm.isClosed();
+		return (pm != null) && !pm.isClosed();
+	}
+
+	protected void close() {
+		this.logger.fine("Closing PersistenceManager.");
+		PersistenceManager pm = this.pool.get();
+		pm.close();
+		this.pool.remove();
 	}
 
 	/*
