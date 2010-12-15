@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.211" errors="0" skipped="0" tests="1" name="br.octahedron.cloudservice.gae.DistributedCounterTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/i386"/>
+    <property name="java.vm.version" value="17.1-b03"/>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vendor.url" value="http://java.sun.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="BR"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/danilo/Programming/projects/octahedron/cotopaxi-gae"/>
+    <property name="java.runtime.version" value="1.6.0_22-b04"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="basedir" value="/home/danilo/Programming/projects/octahedron/cotopaxi-gae"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/endorsed"/>
+    <property name="os.arch" value="i386"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter8644324283399002292.jar"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Linux"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/i386/server:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/../lib/i386:/usr/java/packages/lib/i386:/lib:/usr/lib"/>
+    <property name="surefire.test.class.path" value="/home/danilo/Programming/projects/octahedron/cotopaxi-gae/target/test-classes:/home/danilo/Programming/projects/octahedron/cotopaxi-gae/target/classes:/home/danilo/.m2/repository/br/octahedron/cotopaxi/core/1.0-SNAPSHOT/core-1.0-SNAPSHOT.jar:/home/danilo/.m2/repository/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb.jar:/home/danilo/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar:/home/danilo/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/danilo/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/danilo/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar:/home/danilo/.m2/repository/org/easymock/easymock/3.0/easymock-3.0.jar:/home/danilo/.m2/repository/cglib/cglib-nodep/2.2/cglib-nodep-2.2.jar:/home/danilo/.m2/repository/org/objenesis/objenesis/1.2/objenesis-1.2.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-testing/1.4.0/appengine-testing-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-api-stubs/1.4.0/appengine-api-stubs-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-api-1.0-sdk/1.4.0/appengine-api-1.0-sdk-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-api-labs/1.4.0/appengine-api-labs-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/orm/datanucleus-appengine/1.0.8/datanucleus-appengine-1.0.8.jar:/home/danilo/.m2/repository/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5.jar:/home/danilo/.m2/repository/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1.1/geronimo-jta_1.1_spec-1.1.1.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot Tiered Compilers"/>
+    <property name="os.version" value="2.6.35-24-generic"/>
+    <property name="user.home" value="/home/danilo"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="user.name" value="danilo"/>
+    <property name="java.class.path" value="/home/danilo/Programming/projects/octahedron/cotopaxi-gae/target/test-classes:/home/danilo/Programming/projects/octahedron/cotopaxi-gae/target/classes:/home/danilo/.m2/repository/br/octahedron/cotopaxi/core/1.0-SNAPSHOT/core-1.0-SNAPSHOT.jar:/home/danilo/.m2/repository/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb.jar:/home/danilo/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar:/home/danilo/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/danilo/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/danilo/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar:/home/danilo/.m2/repository/org/easymock/easymock/3.0/easymock-3.0.jar:/home/danilo/.m2/repository/cglib/cglib-nodep/2.2/cglib-nodep-2.2.jar:/home/danilo/.m2/repository/org/objenesis/objenesis/1.2/objenesis-1.2.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-testing/1.4.0/appengine-testing-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-api-stubs/1.4.0/appengine-api-stubs-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-api-1.0-sdk/1.4.0/appengine-api-1.0-sdk-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/appengine-api-labs/1.4.0/appengine-api-labs-1.4.0.jar:/home/danilo/.m2/repository/com/google/appengine/orm/datanucleus-appengine/1.0.8/datanucleus-appengine-1.0.8.jar:/home/danilo/.m2/repository/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5.jar:/home/danilo/.m2/repository/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1.1/geronimo-jta_1.1_spec-1.1.1.jar:"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="/usr/lib/jvm/java-6-sun-1.6.0.22/jre"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="pt"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_22"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/resources.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/rt.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/jsse.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/jce.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/charsets.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/classes"/>
+    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="localRepository" value="/home/danilo/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.184" classname="br.octahedron.cloudservice.gae.DistributedCounterTest" name="testSimpleUserCount"/>
+</testsuite>

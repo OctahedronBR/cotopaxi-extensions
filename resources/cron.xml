@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+<!-- 
+	<cron>
+		<url>/cron/pruneVerifications</url>
+		<description>Remove expired
+			verifications and unverified users.</description>
+		<schedule>every 2
+			hours</schedule>
+	</cron>
+-->
+</cronentries>

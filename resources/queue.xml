@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<queue-entries>
+<!-- 
+	<queue>
+		<name>mail-queue</name>
+		<rate>2000/d</rate>
+		<bucket-size>10</bucket-size>
+	</queue>
+-->
+</queue-entries>

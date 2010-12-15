@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+
+	<!-- CHANGE IT FOR YOUR APPLICATION -->
+	<application>APPLICATION</application>
+	<version>vZero</version>
+
+	<!-- Enables Sessions -->
+	<sessions-enabled>true</sessions-enabled>
+	<!-- Enables SSL -->
+	<ssl-enabled>true</ssl-enabled>
+	<!-- Enables the warming requests -->
+	<warming-requests-enabled>true</warming-requests-enabled>
+
+	<!-- Static files -->
+	<static-files>
+		<include path="/images/**" />
+		<include path="/css/**.css" />
+		<include path="/js/**.js" />
+	</static-files>
+
+	<!-- Resource Files -->
+	<resource-files>
+		<include path="/i18n/**.i18n" />
+		<include path="/templates/**.vm" />
+		<include path="/conf/**.properties" />
+	</resource-files>
+
+	<!-- System Propertis e Env-Variables -->
+	<system-properties>
+		<property name="java.util.logging.config.file" value="conf/logging.properties" />
+		<!-- 
+		<property name="application.properties" value="conf/application.properties" />
+		<property name="application.config.version" value="1" />
+		 -->
+	</system-properties>
+
+	<env-variables>
+		<env-var name="DEFAULT_ENCODING" value="UTF-8" />
+	</env-variables>
+</appengine-web-app>

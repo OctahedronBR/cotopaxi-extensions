@@ -1,0 +1,15 @@
+* Maven2
+
+We use maven2 to manage project. To compile and run unit tests, install maven
+and run 'mvn compile' 
+
+* Log Levels
+Let's use the level:
+  - SEVERE (for fatal errors);
+  - WARNING (for other errors);
+  - INFO (for high level trace/debug messages - use with caution - startup/essential methods);
+  - FINE (for low level trace/debug messages - for most traces).
+Other log recommendations:
+  - Avoid anonymous logger, instead use ClassName.class.getName();
+  - Name the Logger object as "logger".
+  - To log Errors/Exceptions use: logger.log(Level.(WARNING|SEVERE),message, throwable);
