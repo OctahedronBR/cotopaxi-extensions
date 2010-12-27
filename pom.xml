@@ -71,6 +71,10 @@
 			<id>mvnsearch</id>
 			<url>http://www.mvnsearch.org/maven2</url>
 		</repository>
+		<repository>
+			<id>octahedron</id>
+			<url>http://devel.octahedron.com.br/maven</url>
+		</repository>
 	</repositories>
 		<!-- Profiles (used by hudson) -->
 	<profiles>
