@@ -22,7 +22,7 @@ import br.octahedron.cotopaxi.RequestWrapper;
 import br.octahedron.cotopaxi.cloudservice.DatastoreFacade;
 import br.octahedron.cotopaxi.controller.filter.Filter;
 import br.octahedron.cotopaxi.controller.filter.FilterException;
-import br.octahedron.cotopaxi.model.ActionResponse;
+import br.octahedron.cotopaxi.model.response.ActionResponse;
 
 /**
  * A filter that closes the {@link PersistenceManager} for the current request/thread, if exists.
