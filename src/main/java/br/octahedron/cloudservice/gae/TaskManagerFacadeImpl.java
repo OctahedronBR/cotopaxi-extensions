@@ -16,16 +16,16 @@
  */
 package br.octahedron.cloudservice.gae;
 
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 
 import java.util.Map;
 
 import br.octahedron.cotopaxi.cloudservice.TaskManagerFacade;
 import br.octahedron.cotopaxi.cloudservice.common.Task;
 
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
-import com.google.appengine.api.labs.taskqueue.TaskOptions;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
 
 /**
  * @author Danilo Penna Queiroz - daaniloqueiroz@octahedron.com.br
@@ -83,7 +83,7 @@ public class TaskManagerFacadeImpl implements TaskManagerFacade {
 	}
 
 	private TaskOptions getTaskOptions(Task task, long delayMillis) {
-		TaskOptions options = url(this.urlPrefix + task.getClass().getName());
+		TaskOptions options = withUrl(this.urlPrefix + task.getClass().getName());
 		options = options.countdownMillis(delayMillis);
 		if (task.getName() != null) {
 			options = options.taskName(task.getName());
