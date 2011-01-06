@@ -69,12 +69,12 @@ public class DatastoreFacadeImpl implements DatastoreFacade {
 	}
 
 	@Override
-	public void detachObjectsOnQuery(boolean detach) {
+	public void detachObjectsOnLoad(boolean detach) {
 		this.detach = detach;
 	}
 
 	@Override
-	public boolean detachObjectsOnQuery() {
+	public boolean detachObjectsOnLoad() {
 		return this.detach;
 	}
 
