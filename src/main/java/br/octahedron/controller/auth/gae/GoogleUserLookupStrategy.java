@@ -20,6 +20,7 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import br.octahedron.cotopaxi.InputHandler;
 import br.octahedron.cotopaxi.controller.auth.UserInfo;
 import br.octahedron.cotopaxi.controller.auth.UserLookupStrategy;
 
@@ -35,7 +36,7 @@ public class GoogleUserLookupStrategy implements UserLookupStrategy {
 	 * @see br.octahedron.cotopaxi.controller.auth.UserLookupStrategy#getCurrentUSer()
 	 */
 	@Override
-	public UserInfo getCurrentUSer() {
+	public UserInfo getCurrentUSer(InputHandler input) {
 		UserInfo userInfo = null;
 		if (this.userService.isUserLoggedIn()) {
 			User user = this.userService.getCurrentUser();
