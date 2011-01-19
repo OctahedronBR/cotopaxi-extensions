@@ -24,12 +24,16 @@ import br.octahedron.cotopaxi.cloudservice.DatastoreFacade;
 import br.octahedron.cotopaxi.controller.filter.Filter;
 import br.octahedron.cotopaxi.controller.filter.FilterException;
 import br.octahedron.cotopaxi.model.response.ActionResponse;
+import br.octahedron.cotopaxi.model.response.ActionResponse.Result;
 
 /**
  * A filter that manage a {@link Transaction} for model operation.
  * 
  * It begins a {@link Transaction} when a request is received and commits the {@link Transaction} on
  * the end, rolling back if necessary.
+ * 
+ * The transaction is only commit if the request {@link ActionResponse} be an {@link Result#SUCCESS}
+ * in other cases, the it rollback the transaction.
  * 
  * Its necessary that to set the {@link DatastoreFacade#detachObjectsOnQuery} to <code>false</code>;
  * default is <code>true</code>.
@@ -45,12 +49,21 @@ public class TransactionFilter implements Filter {
 	public void doAfter(RequestWrapper requestWrapper, ActionResponse response) throws FilterException {
 		PersistenceManager pm = this.pmp.getPersistenceManagerForThread();
 		Transaction tnx = pm.currentTransaction();
-		try {
-			tnx.commit();
-		} finally {
-			if (tnx.isActive()) {
-				tnx.rollback();
+		switch (response.getResult()) {
+		case SUCCESS:
+			// if result is success, commit it
+			try {
+				tnx.commit();
+			} finally {
+				if (tnx.isActive()) {
+					tnx.rollback();
+				}
 			}
+			break;
+		default:
+			// if not success, rollback
+			tnx.rollback();
+			break;
 		}
 	}
 
