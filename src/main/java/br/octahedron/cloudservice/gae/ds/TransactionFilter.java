@@ -16,6 +16,8 @@
  */
 package br.octahedron.cloudservice.gae.ds;
 
+import java.util.logging.Logger;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Transaction;
 
@@ -42,6 +44,8 @@ import br.octahedron.cotopaxi.model.response.ActionResponse.Result;
  * 
  */
 public class TransactionFilter implements Filter {
+	
+	private static final Logger logger = Logger.getLogger(TransactionFilter.class.getName());
 
 	private PersistenceManagerPool pmp = PersistenceManagerPool.getInstance();
 
@@ -53,15 +57,18 @@ public class TransactionFilter implements Filter {
 		case SUCCESS:
 			// if result is success, commit it
 			try {
+				logger.fine("Action Succeed; commit transaction");
 				tnx.commit();
 			} finally {
 				if (tnx.isActive()) {
+					logger.warning("Transaction still active after commit; rollback transaction.");
 					tnx.rollback();
 				}
 			}
 			break;
 		default:
 			// if not success, rollback
+			logger.info("Action NOT Succeed; transaction rollback");
 			tnx.rollback();
 			break;
 		}
@@ -71,6 +78,7 @@ public class TransactionFilter implements Filter {
 	public void doBefore(RequestWrapper requestWrapper) throws FilterException {
 		PersistenceManager pm = this.pmp.getPersistenceManagerForThread();
 		Transaction tnx = pm.currentTransaction();
+		logger.fine("Transaction begin");
 		tnx.begin();
 	}
 }
