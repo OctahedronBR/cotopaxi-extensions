@@ -16,13 +16,13 @@
  */
 package br.octahedron.controller.auth.gae;
 
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-
 import br.octahedron.cotopaxi.InputHandler;
 import br.octahedron.cotopaxi.controller.auth.UserInfo;
 import br.octahedron.cotopaxi.controller.auth.UserLookupStrategy;
+
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /**
  * @author Name - email@octahedron.com.br
@@ -36,7 +36,7 @@ public class GoogleUserLookupStrategy implements UserLookupStrategy {
 	 * @see br.octahedron.cotopaxi.controller.auth.UserLookupStrategy#getCurrentUSer()
 	 */
 	@Override
-	public UserInfo getCurrentUSer(InputHandler input) {
+	public UserInfo getCurrentUser(InputHandler input) {
 		UserInfo userInfo = null;
 		if (this.userService.isUserLoggedIn()) {
 			User user = this.userService.getCurrentUser();
