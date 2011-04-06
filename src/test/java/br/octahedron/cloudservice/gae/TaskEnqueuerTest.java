@@ -9,7 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.octahedron.cotopaxi.cloudservice.common.Task;
+import br.octahedron.cotopaxi.cloudservice.TaskEnqueuer;
+import br.octahedron.cotopaxi.cloudservice.Task;
+import br.octahedron.cotopaxi.inject.InjectionManager;
 
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.dev.LocalTaskQueue;
@@ -17,16 +19,14 @@ import com.google.appengine.api.taskqueue.dev.QueueStateInfo;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.appengine.tools.development.testing.LocalTaskQueueTestConfig;
 
-public class TaskManagerTest {
+public class TaskEnqueuerTest {
 
-	private static final String URL_PREFIX = "/test";
 	private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalTaskQueueTestConfig());
-	private TaskManagerFacadeImpl taskMng;
 
 	@Before
 	public void setUp() {
 		this.helper.setUp();
-		this.taskMng = new TaskManagerFacadeImpl(URL_PREFIX);
+		InjectionManager.registerDependency(TaskEnqueuer.class, TaskEnqueuerImpl.class);
 	}
 
 	@After
@@ -36,53 +36,29 @@ public class TaskManagerTest {
 
 	@Test
 	public void addTaskTest1() {
-		Task t1 = new TestTask("task1", getParams());
-
-		this.taskMng.add(t1, 10);
+		Task t1 = new Task("/task1", getParams());
+		t1.enqueue();
 
 		LocalTaskQueue ltq = LocalTaskQueueTestConfig.getLocalTaskQueue();
 		QueueStateInfo qsi = ltq.getQueueStateInfo().get(QueueFactory.getDefaultQueue().getQueueName());
 		assertEquals(1, qsi.getTaskInfo().size());
-		assertEquals("task1", qsi.getTaskInfo().get(0).getTaskName());
+		assertEquals("/task1", qsi.getTaskInfo().get(0).getUrl());
 	}
 
 	@Test
 	public void addTaskTest2() {
-		Task t2 = new TestTask(getParams());
-		this.taskMng.add(t2, 20, "myQueue");
+		Task t2 = new Task("/task2", getParams(),"myQueue", 20);
+		t2.enqueue();
 
 		LocalTaskQueue ltq = LocalTaskQueueTestConfig.getLocalTaskQueue();
 		QueueStateInfo qsi = ltq.getQueueStateInfo().get(QueueFactory.getDefaultQueue().getQueueName());
 		assertEquals(1, qsi.getTaskInfo().size());
-	}
-
-	@Test(expected = UnsupportedOperationException.class)
-	public void createQueue1() {
-		this.taskMng.createQueue("test");
-	}
-
-	@Test(expected = UnsupportedOperationException.class)
-	public void createQueue2() {
-		this.taskMng.createQueue("test", getParams());
+		assertEquals("/task2", qsi.getTaskInfo().get(0).getUrl());
 	}
 
 	private static Map<String, String> getParams() {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("company", "octahedron");
 		return params;
-	}
-
-	private static class TestTask extends Task {
-		public TestTask(String name, Map<String, String> params) {
-			super(name, params);
-		}
-
-		public TestTask(Map<String, String> params) {
-			super(params);
-		}
-
-		@Override
-		public void run() {
-		}
 	}
 }
