@@ -59,6 +59,7 @@ public class TaskEnqueuerImpl implements TaskEnqueuer {
 
 	private TaskOptions getTaskOptions(Task task) {
 		TaskOptions options = withUrl(task.getUrl());
+		options = options.method(TaskOptions.Method.POST);
 		options = options.countdownMillis(task.getDelay());
 		for (Entry<String, String> param : task.getParams().entrySet()) {
 			options = options.param(param.getKey(), param.getValue());
