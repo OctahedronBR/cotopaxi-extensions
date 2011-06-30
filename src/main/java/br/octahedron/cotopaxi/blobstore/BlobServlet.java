@@ -33,7 +33,7 @@ public class BlobServlet {
 //
 //	private UserService userService = UserServiceFactory.getUserService();
 //
-//	private static final Logger logger = Logger.getLogger(BlobServlet.class.getName());
+//	private static final Log log = Logger.getLogger(BlobServlet.class.getName());
 //
 //	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //		String key = parseKey(req.getRequestURI());

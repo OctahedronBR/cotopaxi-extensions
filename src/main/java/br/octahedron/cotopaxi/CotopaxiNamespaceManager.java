@@ -37,7 +37,7 @@ public class CotopaxiNamespaceManager {
 	
 	private static final String GLOBAL_NAMESPACE = ""; 
 	private static final ThreadLocal<String> previousNamespaces = new ThreadLocal<String>();
-	private static Log logger = new Log(NamespaceManager.class);
+	private static Log log = new Log(NamespaceManager.class);
 
 
 	/**
@@ -45,7 +45,7 @@ public class CotopaxiNamespaceManager {
 	 * later.
 	 */
 	public static void changeToNamespace(String namespace) {
-		logger.debug("Changing namespace to namespace: %s", namespace);
+		log.debug("Changing namespace to namespace: %s", namespace);
 		previousNamespaces.set((NamespaceManager.get() != null) ? NamespaceManager.get() : "");
 		NamespaceManager.set(namespace);
 	}
@@ -65,10 +65,10 @@ public class CotopaxiNamespaceManager {
 	public static void changeToPreviousNamespace() {
 		String previous = previousNamespaces.get();
 		if (previous!= null) {
-			logger.debug("Changing namespace from global to original namespace: %s", previous);
+			log.debug("Changing namespace from global to original namespace: %s", previous);
 			NamespaceManager.set(previous);
 		} else {
-			logger.debug("No previous namespace stored, keeping the actual one.");
+			log.debug("No previous namespace stored, keeping the actual one.");
 		}
 	}
 	
@@ -85,7 +85,7 @@ public class CotopaxiNamespaceManager {
 	        	results.add(e.getKey().getName());
 	        }
 	    }
-	    logger.debug("Quering all namespaces. Found %d namespaces", results.size());
+	    log.debug("Quering all namespaces. Found %d namespaces", results.size());
 		return results;
 	}
 }

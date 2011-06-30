@@ -19,10 +19,9 @@ package br.octahedron.cotopaxi.eventbus;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import br.octahedron.cotopaxi.inject.InstanceHandler;
+import br.octahedron.util.Log;
 
 import com.google.appengine.api.taskqueue.DeferredTask;
 import com.google.appengine.api.taskqueue.Queue;
@@ -37,7 +36,7 @@ import com.google.appengine.api.taskqueue.TaskOptions;
 public class AppEngineEventPublisher implements EventPublisher {
 
 	private static final String QUEUE_NAME = "eventbus";
-	private static final Logger logger = Logger.getLogger(AppEngineEventPublisher.class.getName());
+	private static final Log log = new Log(AppEngineEventPublisher.class);
 	private Queue taskQueue;
 
 	protected AppEngineEventPublisher() {
@@ -60,7 +59,7 @@ public class AppEngineEventPublisher implements EventPublisher {
 		for (Class<? extends Subscriber> subscriber : subscribers) {
 			tasks.add(TaskOptions.Builder.withPayload(new PublishTask(subscriber, event)));
 		}
-		logger.fine("Adding " + tasks.size() + " PublishTasks to " + QUEUE_NAME + " queue. EventClass: " + event.getClass());
+		log.debug("Adding %d PublishTasks to queue %s. EventClass: %s", tasks.size(), QUEUE_NAME , event.getClass());
 		this.taskQueue.add(tasks);
 
 	}
@@ -89,10 +88,11 @@ public class AppEngineEventPublisher implements EventPublisher {
 		public void run() {
 			try {
 				Subscriber sub = instanceHandler.createInstance(this.subscriber);
-				logger.fine("Publishing event " + this.event.getClass() + " to subscriber " + this.subscriber.getClass());
+				log.debug("Publishing event %s to subscriber %s", this.event.getClass(), this.subscriber.getClass());
 				sub.eventPublished(this.event);
 			} catch (Exception e) {
-				logger.log(Level.WARNING, "Unable to deliver event to subscriber : " + subscriber.getName(), e);
+				log.warning("Unable to deliver event to subscriber: %s",subscriber.getName());
+				log.warning("Unable to deliver event to subscriber", e);
 			}
 		}
 
