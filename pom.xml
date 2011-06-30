@@ -63,6 +63,7 @@
 	</distributionManagement>
 	<!-- properties -->
 	<properties>
+		<gae.version>1.5.1</gae.version>
 		<project_charset>UTF-8</project_charset>
 	</properties>
 	<!-- repositories -->
@@ -217,49 +218,31 @@
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-		<!-- Other Dependencies -->
-		<dependency>
-			<groupId>javax.jdo</groupId>
-			<artifactId>jdo2-api</artifactId>
-			<version>2.3-eb</version>
-			<scope>compile</scope>
-			<exclusions>
-				<exclusion>
-                    <groupId>javax.transaction</groupId>
-                    <artifactId>transaction-api</artifactId>
-                </exclusion>
-                <exclusion>
-                	<groupId>org.apache.geronimo.specs</groupId>
-      				<artifactId>geronimo-jpa_3.0_spec</artifactId>
-      			</exclusion>
-            </exclusions>
-		</dependency>
-		<!-- GAE Dependencies - its still here due m2clipse plugin failure -->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
-			<version>1.4.3</version>
+			<version>${gae.version}</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
-			<version>1.4.3</version>
+			<version>${gae.version}</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
+		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>1.4.3</version>
+			<version>${gae.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-labs</artifactId>
-			<version>1.4.3</version>
+			<version>${gae.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -277,10 +260,10 @@
 			<type>jar</type>
 			<scope>runtime</scope>
 			<exclusions>
-			    <exclusion>
-			        <groupId>javax.transaction</groupId>
-			        <artifactId>transaction-api</artifactId>
-			    </exclusion>
+				<exclusion>
+					<groupId>javax.transaction</groupId>
+					<artifactId>transaction-api</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -302,7 +285,7 @@
 			<artifactId>datanucleus-jpa</artifactId>
 			<version>1.1.5</version>
 			<type>jar</type>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
