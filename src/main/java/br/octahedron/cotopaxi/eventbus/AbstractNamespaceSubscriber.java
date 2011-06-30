@@ -16,8 +16,8 @@
  */
 package br.octahedron.cotopaxi.eventbus;
 
-import static br.octahedron.cotopaxi.CotopaxiNamespaceManager.changeToNamespace;
-import static br.octahedron.cotopaxi.CotopaxiNamespaceManager.changeToPreviousNamespace;
+import static br.octahedron.cotopaxi.datastore.NamespaceManagerFacade.changeToNamespace;
+import static br.octahedron.cotopaxi.datastore.NamespaceManagerFacade.changeToPreviousNamespace;
 
 /**
  * A subscriber that deals with different namespaces, when receiving NamespaceEvents.
