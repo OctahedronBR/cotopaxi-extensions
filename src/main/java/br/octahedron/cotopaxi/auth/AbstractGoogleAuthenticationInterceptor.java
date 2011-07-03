@@ -71,14 +71,21 @@ public abstract class AbstractGoogleAuthenticationInterceptor extends AbstractAu
 				User user = this.userService.getCurrentUser();
 				this.session(CURRENT_USER_EMAIL, user.getEmail());
 			} else {
-				String dest;
-				if (this.redirectUrl == null) {
-					dest = this.userService.createLoginURL(this.fullRequestedUrl(), this.authDomain);
-				} else {
-					dest = this.userService.createLoginURL(this.redirectUrl, this.authDomain);
-				}
-				this.redirect(dest);
+				this.redirectUnauthenticatedUser();
 			}
 		}
+	}
+	
+	/**
+	 * Redirects an Unauthenticated user to login page
+	 */
+	protected void redirectUnauthenticatedUser() {
+		String dest;
+		if (this.redirectUrl == null) {
+			dest = this.userService.createLoginURL(this.fullRequestedUrl(), this.authDomain);
+		} else {
+			dest = this.userService.createLoginURL(this.redirectUrl, this.authDomain);
+		}
+		this.redirect(dest);
 	}
 }
