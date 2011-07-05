@@ -16,6 +16,8 @@
  */
 package br.octahedron.cotopaxi.auth;
 
+import br.octahedron.util.Log;
+
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -36,7 +38,8 @@ public abstract class AbstractGoogleAuthenticationInterceptor extends AbstractAu
 	private final UserService userService = UserServiceFactory.getUserService();
 	private String authDomain;
 	private String redirectUrl;
-
+	protected Log log;
+	
 	/**
 	 * Creates a new {@link AbstractAuthenticationInterceptor} that will authenticate the users
 	 * using google authentication and the given auth domain, and will, after authenticate, redirect
@@ -45,8 +48,8 @@ public abstract class AbstractGoogleAuthenticationInterceptor extends AbstractAu
 	 * @param authDomain
 	 *            authentication domain to use.
 	 */
-	public AbstractGoogleAuthenticationInterceptor(String authDomain) {
-		this(authDomain, null);
+	public AbstractGoogleAuthenticationInterceptor(Log log, String authDomain) {
+		this(log, authDomain, null);
 	}
 
 	/**
@@ -59,23 +62,26 @@ public abstract class AbstractGoogleAuthenticationInterceptor extends AbstractAu
 	 * @param redirectUrl
 	 *            the redirect url to be used to redirect user after login.
 	 */
-	public AbstractGoogleAuthenticationInterceptor(String authDomain, String redirectUrl) {
+	public AbstractGoogleAuthenticationInterceptor(Log log, String authDomain, String redirectUrl) {
+		this.log = log;
 		this.authDomain = authDomain;
 		this.redirectUrl = redirectUrl;
 	}
 
 	@Override
 	protected void checkUserAuthentication() {
-		if (this.session(CURRENT_USER_EMAIL) != null) {
+		if (this.session(CURRENT_USER_EMAIL) == null) {
 			if (this.userService.isUserLoggedIn()) {
+				log.debug("User is logged in GoogleAccounts");
 				User user = this.userService.getCurrentUser();
 				this.session(CURRENT_USER_EMAIL, user.getEmail());
 			} else {
+				log.debug("User is not logger, redirecting");
 				this.redirectUnauthenticatedUser();
 			}
 		}
 	}
-	
+
 	/**
 	 * Redirects an Unauthenticated user to login page
 	 */
