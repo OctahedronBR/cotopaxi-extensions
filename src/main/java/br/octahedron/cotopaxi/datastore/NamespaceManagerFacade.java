@@ -39,7 +39,6 @@ public class NamespaceManagerFacade {
 	private static final ThreadLocal<String> previousNamespaces = new ThreadLocal<String>();
 	private static Log log = new Log(NamespaceManager.class);
 
-
 	/**
 	 * Changes current namespace to the given one, storing the actual namespace to be restored
 	 * later.
@@ -87,5 +86,19 @@ public class NamespaceManagerFacade {
 	    }
 	    log.debug("Quering all namespaces. Found %d namespaces", results.size());
 		return results;
+	}
+	
+	public static boolean exists(String namespace) {
+		Query q = new Query(Query.NAMESPACE_METADATA_KIND);
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+	    for (com.google.appengine.api.datastore.Entity e : ds.prepare(q).asIterable()) {
+	        // A zero numeric id is used for the non-default namespaces
+	        if (e.getKey().getId() == 0) { 
+	        	if (e.getKey().getName().equalsIgnoreCase(namespace)) {
+	        		return true;
+	        	}
+	        }
+	    }
+		return false;
 	}
 }
