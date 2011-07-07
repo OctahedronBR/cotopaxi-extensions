@@ -34,7 +34,7 @@ import com.google.appengine.api.users.UserServiceFactory;
  */
 public abstract class AbstractGoogleAuthenticationInterceptor extends AbstractAuthenticationInterceptor {
 
-	public static final String CURRENT_USER_EMAIL = "current_user_email";
+
 	private final UserService userService = UserServiceFactory.getUserService();
 	private String authDomain;
 	private String redirectUrl;
@@ -70,11 +70,11 @@ public abstract class AbstractGoogleAuthenticationInterceptor extends AbstractAu
 
 	@Override
 	protected void checkUserAuthentication() {
-		if (this.session(CURRENT_USER_EMAIL) == null) {
+		if (!this.isUserLogged()) {
 			if (this.userService.isUserLoggedIn()) {
 				log.debug("User is logged in GoogleAccounts");
 				User user = this.userService.getCurrentUser();
-				session(CURRENT_USER_EMAIL, user.getEmail());
+				this.setUserLogged(user.getEmail());
 			} else {
 				log.debug("User is not logger, redirecting");
 				this.redirectUnauthenticatedUser();
