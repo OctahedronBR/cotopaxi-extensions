@@ -22,6 +22,8 @@ import static org.easymock.EasyMock.createMock;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.octahedron.cotopaxi.inject.InstanceHandler;
+
 import com.google.appengine.api.taskqueue.Queue;
 
 /**
@@ -30,12 +32,13 @@ import com.google.appengine.api.taskqueue.Queue;
 public class EventBusTest {
 
 	private Queue queue;
-
+	private EventBus bus = new EventBus();
+	
 	@Before
 	public void setUp() {
-		EventBus.reset();
 		this.queue = createMock(Queue.class);
-		EventBus.setEventPublisher(new AppEngineEventPublisher(this.queue));
+		bus.reset();
+		bus.setEventPublisher(new AppEngineEventPublisher(this.queue));
 	}
 
 	@Test
