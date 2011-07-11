@@ -22,8 +22,6 @@ import static org.easymock.EasyMock.createMock;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.octahedron.cotopaxi.inject.InstanceHandler;
-
 import com.google.appengine.api.taskqueue.Queue;
 
 /**
