@@ -35,9 +35,9 @@ import com.google.appengine.api.datastore.Query;
  */
 public class AppEngineNamespaceManager implements br.octahedron.cotopaxi.datastore.NamespaceManager {
 	
+	private static final Log log = new Log(NamespaceManager.class);
 	private final String GLOBAL_NAMESPACE = ""; 
 	private final ThreadLocal<String> previousNamespaces = new ThreadLocal<String>();
-	private Log log = new Log(NamespaceManager.class);
 
 	/**
 	 * Changes current namespace to the given one, storing the actual namespace to be restored

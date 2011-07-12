@@ -29,7 +29,7 @@ public class NamespaceManagerInterceptor extends AbstractNamespaceManagerInterce
 	@Inject
 	private NamespaceManager namespaceManager;
 	
-	protected void setNamespaceManager(NamespaceManager namespaceManager) {
+	public void setNamespaceManager(NamespaceManager namespaceManager) {
 		this.namespaceManager = namespaceManager;
 	}
 	

@@ -59,7 +59,7 @@ public class AppEngineEventPublisher implements EventPublisher {
 		for (Class<? extends Subscriber> subscriber : subscribers) {
 			tasks.add(TaskOptions.Builder.withPayload(new PublishTask(subscriber, event)));
 		}
-		log.debug("Adding %d PublishTasks to queue %s. EventClass: %s", tasks.size(), QUEUE_NAME , event.getClass());
+		log.debug("Adding %d PublishTasks to queue %s. EventClass: %s", tasks.size(), QUEUE_NAME, event.getClass());
 		this.taskQueue.add(tasks);
 
 	}
@@ -90,7 +90,7 @@ public class AppEngineEventPublisher implements EventPublisher {
 				log.debug("Publishing event %s to subscriber %s", this.event.getClass(), this.subscriber.getClass());
 				sub.eventPublished(this.event);
 			} catch (Exception e) {
-				log.warning("Unable to deliver event to subscriber: %s",subscriber.getName());
+				log.warning("Unable to deliver event to subscriber: %s", subscriber.getName());
 				log.warning("Unable to deliver event to subscriber", e);
 			}
 		}
