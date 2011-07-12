@@ -223,14 +223,14 @@
 			<artifactId>appengine-testing</artifactId>
 			<version>${gae.version}</version>
 			<type>jar</type>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
 			<version>${gae.version}</version>
 			<type>jar</type>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
