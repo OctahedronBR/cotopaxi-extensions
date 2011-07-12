@@ -14,44 +14,38 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.eventbus;
+package br.octahedron.cotopaxi.datastore;
 
-import br.octahedron.cotopaxi.datastore.NamespaceManager;
+import java.lang.annotation.Annotation;
+
 import br.octahedron.cotopaxi.inject.Inject;
 
 /**
- * A subscriber that deals with different namespaces, when receiving NamespaceEvents.
- * 
- * @author Danilo Penna Queiroz
+ * @author Vítor Avelino - vitoravelino@octahedron.com.br
+ *
  */
-public abstract class AbstractNamespaceSubscriber implements Subscriber {
-	
+public class NamespaceManagerInterceptor extends AbstractNamespaceManagerInterceptor {
+
 	@Inject
 	private NamespaceManager namespaceManager;
 	
-	public void setNamespaceManager(NamespaceManager namespaceManager) {
+	protected void setNamespaceManager(NamespaceManager namespaceManager) {
 		this.namespaceManager = namespaceManager;
 	}
 	
 	/* (non-Javadoc)
-	 * @see br.octahedron.commons.eventbus.Subscriber#eventPublished(br.octahedron.commons.eventbus.Event)
+	 * @see br.octahedron.cotopaxi.interceptor.ControllerInterceptor#execute(java.lang.annotation.Annotation)
 	 */
 	@Override
-	public final void eventPublished(Event event) {
-		try {
-			if (event instanceof NamespaceEvent) {
-				namespaceManager.changeToNamespace(((NamespaceEvent)event).getNamespace());
+	public void execute(Annotation ann) {
+		if (ann instanceof NamespaceRequired) {
+			NamespaceRequired namespace = (NamespaceRequired) ann;
+			if (namespace.global()) {
+				namespaceManager.changeToGlobalNamespace();
+			} else {
+				namespaceManager.changeToNamespace(subDomain());
 			}
-			this.processEvent(event);
-		} finally {
-			namespaceManager.changeToPreviousNamespace();
 		}
 	}
-
-	/**
-	 * @see Subscriber#eventPublished(Event)
-	 */
-	protected abstract void processEvent(Event event);
-
 
 }

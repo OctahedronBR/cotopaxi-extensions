@@ -33,17 +33,17 @@ import com.google.appengine.api.datastore.Query;
  * @author Vitor Avelino
  * @author Danilo Queiroz
  */
-public class NamespaceManagerFacade {
+public class AppEngineNamespaceManager implements br.octahedron.cotopaxi.datastore.NamespaceManager {
 	
-	private static final String GLOBAL_NAMESPACE = ""; 
-	private static final ThreadLocal<String> previousNamespaces = new ThreadLocal<String>();
-	private static Log log = new Log(NamespaceManager.class);
+	private final String GLOBAL_NAMESPACE = ""; 
+	private final ThreadLocal<String> previousNamespaces = new ThreadLocal<String>();
+	private Log log = new Log(NamespaceManager.class);
 
 	/**
 	 * Changes current namespace to the given one, storing the actual namespace to be restored
 	 * later.
 	 */
-	public static void changeToNamespace(String namespace) {
+	public void changeToNamespace(String namespace) {
 		log.debug("Changing namespace to namespace: %s", namespace);
 		previousNamespaces.set((NamespaceManager.get() != null) ? NamespaceManager.get() : "");
 		NamespaceManager.set(namespace);
@@ -53,15 +53,15 @@ public class NamespaceManagerFacade {
 	 * Changes current namespace to global namespace, storing the actual namespace to be restored
 	 * later.
 	 */
-	public static void changeToGlobalNamespace() {
+	public void changeToGlobalNamespace() {
+		log.debug("Changing namespace to global namespace");
 		changeToNamespace(GLOBAL_NAMESPACE);
-
 	}
 
 	/**
 	 * Changes the current namespace to the previous one namespace
 	 */
-	public static void changeToPreviousNamespace() {
+	public void changeToPreviousNamespace() {
 		String previous = previousNamespaces.get();
 		if (previous!= null) {
 			log.debug("Changing namespace from global to original namespace: %s", previous);
@@ -74,7 +74,7 @@ public class NamespaceManagerFacade {
 	/**
 	 * Retrieves all namespaces created to domains on application
 	 */
-	public static List<String> getNamespaces() {
+	public List<String> getNamespaces() {
 		Query q = new Query(Query.NAMESPACE_METADATA_KIND);
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		List<String> results = new ArrayList<String>();
@@ -88,7 +88,7 @@ public class NamespaceManagerFacade {
 		return results;
 	}
 	
-	public static boolean exists(String namespace) {
+	public boolean exists(String namespace) {
 		Query q = new Query(Query.NAMESPACE_METADATA_KIND);
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 	    for (com.google.appengine.api.datastore.Entity e : ds.prepare(q).asIterable()) {
