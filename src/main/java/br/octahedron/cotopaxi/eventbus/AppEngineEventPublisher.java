@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import br.octahedron.cotopaxi.inject.InstanceHandler;
+import br.octahedron.cotopaxi.inject.Injector;
 import br.octahedron.util.Log;
 
 import com.google.appengine.api.taskqueue.DeferredTask;
@@ -86,7 +86,7 @@ public class AppEngineEventPublisher implements EventPublisher {
 		@Override
 		public void run() {
 			try {
-				Subscriber sub = InstanceHandler.createInstance(this.subscriber);
+				Subscriber sub = Injector.createInstance(this.subscriber);
 				log.debug("Publishing event %s to subscriber %s", this.event.getClass(), this.subscriber.getClass());
 				sub.eventPublished(this.event);
 			} catch (Exception e) {
