@@ -39,11 +39,11 @@ public class AppEngineEventPublisher implements EventPublisher {
 	private static final Log log = new Log(AppEngineEventPublisher.class);
 	private Queue taskQueue;
 
-	protected AppEngineEventPublisher() {
+	public AppEngineEventPublisher() {
 		this(QueueFactory.getQueue(QUEUE_NAME));
 	}
 
-	protected AppEngineEventPublisher(Queue queue) {
+	public AppEngineEventPublisher(Queue queue) {
 		this.taskQueue = queue;
 	}
 
