@@ -70,11 +70,11 @@ public abstract class AbstractGoogleAuthenticationInterceptor extends AbstractAu
 
 	@Override
 	protected void checkUserAuthentication() {
-		if (!this.isUserLogged()) {
+		if (this.currentUser() == null) {
 			if (this.userService.isUserLoggedIn()) {
 				log.debug("User is logged in GoogleAccounts");
 				User user = this.userService.getCurrentUser();
-				this.setUserLogged(user.getEmail());
+				this.currentUser(user.getEmail());
 			} else {
 				log.debug("User is not logger, redirecting");
 				this.redirectUnauthenticatedUser();
