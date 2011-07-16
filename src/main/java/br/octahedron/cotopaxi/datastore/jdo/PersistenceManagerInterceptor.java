@@ -14,21 +14,28 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.eventbus;
+package br.octahedron.cotopaxi.datastore.jdo;
 
-import br.octahedron.cotopaxi.eventbus.Event;
-import br.octahedron.cotopaxi.eventbus.InterestedEvent;
-import br.octahedron.cotopaxi.eventbus.Subscriber;
+import javax.jdo.PersistenceManager;
+
+import br.octahedron.cotopaxi.interceptor.ResponseDispatcherInterceptor;
 
 /**
+ * A {@link ResponseDispatcherInterceptor} for close opened {@link PersistenceManager}.
+ * 
  * @author Danilo Queiroz
  */
-@InterestedEvent(events={EventOne.class, EventTwo.class})
-public class SubscriberOne implements Subscriber {
-	protected static Event receivedEvent;
+public class PersistenceManagerInterceptor extends ResponseDispatcherInterceptor {
 
+	private PersistenceManagerPool pmp = PersistenceManagerPool.getInstance();
+
+	/* (non-Javadoc)
+	 * @see br.octahedron.cotopaxi.interceptor.ResponseDispatcherInterceptor#finish()
+	 */
 	@Override
-	public void eventPublished(Event event) {
-		receivedEvent = event; 
+	public void finish() {
+		if (this.pmp.isPersistenceManagerOpened()) {
+			this.pmp.close();
+		}
 	}
 }

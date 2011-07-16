@@ -14,7 +14,7 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.datastore;
+package br.octahedron.cotopaxi.datastore.namespace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ import com.google.appengine.api.datastore.Query;
  * @author Vitor Avelino
  * @author Danilo Queiroz
  */
-public class AppEngineNamespaceManager implements br.octahedron.cotopaxi.datastore.NamespaceManager {
+public class AppEngineNamespaceManager implements br.octahedron.cotopaxi.datastore.namespace.NamespaceManager {
 	
 	private static final Log log = new Log(NamespaceManager.class);
 	private final String GLOBAL_NAMESPACE = ""; 

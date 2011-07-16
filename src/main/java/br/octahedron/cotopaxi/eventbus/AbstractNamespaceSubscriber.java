@@ -16,7 +16,7 @@
  */
 package br.octahedron.cotopaxi.eventbus;
 
-import br.octahedron.cotopaxi.datastore.NamespaceManager;
+import br.octahedron.cotopaxi.datastore.namespace.NamespaceManager;
 import br.octahedron.cotopaxi.inject.Inject;
 
 /**

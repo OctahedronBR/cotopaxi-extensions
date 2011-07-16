@@ -14,21 +14,17 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.eventbus;
-
-import br.octahedron.cotopaxi.eventbus.Event;
-import br.octahedron.cotopaxi.eventbus.InterestedEvent;
-import br.octahedron.cotopaxi.eventbus.Subscriber;
+package br.octahedron.cotopaxi.validation;
 
 /**
- * @author Danilo Queiroz
+ * A validation rule that check if a field has a value.
+ * 
+ * @author Danilo Queiroz - daniloqueiroz@octahedron.com.br
  */
-@InterestedEvent(events={EventOne.class, EventTwo.class})
-public class SubscriberOne implements Subscriber {
-	protected static Event receivedEvent;
+public class RequiredRule implements ValidationRule {
 
 	@Override
-	public void eventPublished(Event event) {
-		receivedEvent = event; 
+	public boolean isValid(String input) {
+		return (input != null) && !input.isEmpty();
 	}
 }

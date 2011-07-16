@@ -17,18 +17,9 @@
 package br.octahedron.cotopaxi.eventbus;
 
 import br.octahedron.cotopaxi.eventbus.Event;
-import br.octahedron.cotopaxi.eventbus.InterestedEvent;
-import br.octahedron.cotopaxi.eventbus.Subscriber;
 
 /**
  * @author Danilo Queiroz
  */
-@InterestedEvent(events={EventOne.class, EventTwo.class})
-public class SubscriberOne implements Subscriber {
-	protected static Event receivedEvent;
-
-	@Override
-	public void eventPublished(Event event) {
-		receivedEvent = event; 
-	}
-}
+@SuppressWarnings("serial")
+public class EventTwo implements Event { }

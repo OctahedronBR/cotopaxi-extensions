@@ -14,21 +14,22 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.eventbus;
+package br.octahedron.cotopaxi.datastore.namespace;
 
-import br.octahedron.cotopaxi.eventbus.Event;
-import br.octahedron.cotopaxi.eventbus.InterestedEvent;
-import br.octahedron.cotopaxi.eventbus.Subscriber;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * @author Danilo Queiroz
+ * Specifies that a controller needs to use a custom namespace for read/write/retrieve data.
+ * 
+ * @author Vítor Avelino - vitoravelino@octahedron.com.br
  */
-@InterestedEvent(events={EventOne.class, EventTwo.class})
-public class SubscriberOne implements Subscriber {
-	protected static Event receivedEvent;
-
-	@Override
-	public void eventPublished(Event event) {
-		receivedEvent = event; 
-	}
+@Retention(value=RetentionPolicy.RUNTIME)
+@Target(value={ElementType.TYPE, ElementType.METHOD})
+public @interface NamespaceRequired {
+	
+	boolean global() default false;
+	
 }

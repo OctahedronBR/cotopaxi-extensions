@@ -14,21 +14,22 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.eventbus;
-
-import br.octahedron.cotopaxi.eventbus.Event;
-import br.octahedron.cotopaxi.eventbus.InterestedEvent;
-import br.octahedron.cotopaxi.eventbus.Subscriber;
+package br.octahedron.cotopaxi.validation;
 
 /**
- * @author Danilo Queiroz
+ * Defines the interface to validation rules. Validation Rules are responsible by check if a given
+ * input is valid.
+ * 
+ * @author Danilo Queiroz - daniloqueiroz@octahedron.com.br
  */
-@InterestedEvent(events={EventOne.class, EventTwo.class})
-public class SubscriberOne implements Subscriber {
-	protected static Event receivedEvent;
+public interface ValidationRule {
 
-	@Override
-	public void eventPublished(Event event) {
-		receivedEvent = event; 
-	}
+	/**
+	 * Checks if the given input is valid.
+	 * 
+	 * @param input the imput to be validate
+	 * @return <code>true</code> if the imput is valid, <code>false</code> if it's not valid.
+	 */
+	public boolean isValid(String input);
+
 }

@@ -23,12 +23,8 @@ import br.octahedron.cotopaxi.eventbus.Subscriber;
 /**
  * @author Danilo Queiroz
  */
-@InterestedEvent(events={EventOne.class, EventTwo.class})
-public class SubscriberOne implements Subscriber {
-	protected static Event receivedEvent;
-
+@InterestedEvent(events={EventTwo.class})
+public class SubscriberTwo implements Subscriber {
 	@Override
-	public void eventPublished(Event event) {
-		receivedEvent = event; 
-	}
+	public void eventPublished(Event event) {}
 }

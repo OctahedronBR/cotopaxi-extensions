@@ -14,38 +14,51 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.datastore;
+package br.octahedron.cotopaxi.datastore.namespace;
 
 import java.lang.annotation.Annotation;
 
 import br.octahedron.cotopaxi.inject.Inject;
+import br.octahedron.cotopaxi.interceptor.ControllerInterceptor;
 
 /**
+ * The base class for Namespace interceptors. Children classes should only define the strategy to be
+ * used to changes the namespace.
+ * 
  * @author Vítor Avelino - vitoravelino@octahedron.com.br
- *
  */
-public class NamespaceManagerInterceptor extends AbstractNamespaceManagerInterceptor {
+public abstract class AbstractNamespaceInterceptor extends ControllerInterceptor {
 
 	@Inject
-	private NamespaceManager namespaceManager;
-	
+	protected NamespaceManager namespaceManager;
+
 	public void setNamespaceManager(NamespaceManager namespaceManager) {
 		this.namespaceManager = namespaceManager;
 	}
-	
-	/* (non-Javadoc)
-	 * @see br.octahedron.cotopaxi.interceptor.ControllerInterceptor#execute(java.lang.annotation.Annotation)
-	 */
+
+	@Override
+	public final Class<? extends Annotation> getInterceptorAnnotation() {
+		return NamespaceRequired.class;
+	}
+
 	@Override
 	public void execute(Annotation ann) {
 		if (ann instanceof NamespaceRequired) {
 			NamespaceRequired namespace = (NamespaceRequired) ann;
 			if (namespace.global()) {
-				namespaceManager.changeToGlobalNamespace();
+				this.namespaceManager.changeToGlobalNamespace();
 			} else {
-				namespaceManager.changeToNamespace(subDomain());
+				this.changeNamespace();
 			}
 		}
 	}
 
+	/**
+	 * Changes the namespace.
+	 * 
+	 * Children classes should override this method to define the strategy to be used to changes the
+	 * namespace. There's no need to handle changes to the global namespace, it's handled by the
+	 * this {@link AbstractNamespaceInterceptor}.
+	 */
+	public abstract void changeNamespace();
 }

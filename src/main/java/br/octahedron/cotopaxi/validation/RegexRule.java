@@ -14,21 +14,27 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.eventbus;
+package br.octahedron.cotopaxi.validation;
 
-import br.octahedron.cotopaxi.eventbus.Event;
-import br.octahedron.cotopaxi.eventbus.InterestedEvent;
-import br.octahedron.cotopaxi.eventbus.Subscriber;
+import java.util.regex.Pattern;
 
 /**
- * @author Danilo Queiroz
+ * A validation rule that checks if the input matches the given pattern
+ * 
+ * @author Danilo Queiroz - daniloqueiroz@octahedron.com.br
  */
-@InterestedEvent(events={EventOne.class, EventTwo.class})
-public class SubscriberOne implements Subscriber {
-	protected static Event receivedEvent;
+public class RegexRule implements ValidationRule {
+	
+	private Pattern pattern;
+
+	public RegexRule(String pattern) {
+		this.pattern = Pattern.compile(pattern);
+	}
 
 	@Override
-	public void eventPublished(Event event) {
-		receivedEvent = event; 
+	public boolean isValid(String input) {
+		if (input == null)
+			input = "";
+		return this.pattern.matcher(input).matches();
 	}
 }
