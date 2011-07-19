@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.octahedron.cotopaxi</groupId>
-	<artifactId>gae</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<artifactId>extensions</artifactId>
 	<packaging>jar</packaging>
 	<!-- Project Information -->
-	<name>Cotopaxi-GAE</name>
-	<description>A lightweight java web framework. </description>
+	<name>Cotopaxi-extensions</name>
+	<description>Extensions for cotopaxi framework</description>
 	<url>http://www.octahedron.com.br/cotopaxi</url>
 	<organization>
 		<name>Octahedron</name>
@@ -23,9 +23,9 @@
   		</license>
 	</licenses>
 	<scm>
-		<connection>scm:git:git://github.com/Octahedron/cotopaxi-gae.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:Octahedron/cotopaxi-gae.git</developerConnection>
-		<url>http://github.com/Octahedron/cotopaxi-gae/</url>
+		<connection>scm:git:git://github.com/Octahedron/cotopaxi-extensions.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:Octahedron/cotopaxi-extensions.git</developerConnection>
+		<url>http://github.com/Octahedron/cotopaxi-extensions/</url>
 	</scm>
 	<developers>
 		<developer>
@@ -58,7 +58,7 @@
     	</repository>
     	<site>
 			<id>octa-server</id>
-			<url>scp://devel.octahedron.com.br/var/www/cotopaxi/gae</url>
+			<url>scp://devel.octahedron.com.br/var/www/cotopaxi/extensions</url>
     	</site>
 	</distributionManagement>
 	<!-- properties -->
@@ -288,4 +288,7 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
+	<modules>
+		<module>event-bus</module>
+	</modules>
 </project>
