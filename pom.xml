@@ -288,7 +288,4 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-	<modules>
-		<module>event-bus</module>
-	</modules>
 </project>
