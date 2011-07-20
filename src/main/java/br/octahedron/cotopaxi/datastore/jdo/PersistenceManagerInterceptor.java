@@ -18,20 +18,17 @@ package br.octahedron.cotopaxi.datastore.jdo;
 
 import javax.jdo.PersistenceManager;
 
-import br.octahedron.cotopaxi.interceptor.ResponseDispatcherInterceptor;
+import br.octahedron.cotopaxi.interceptor.ResponseInterceptor;
 
 /**
  * A {@link ResponseDispatcherInterceptor} for close opened {@link PersistenceManager}.
  * 
  * @author Danilo Queiroz
  */
-public class PersistenceManagerInterceptor extends ResponseDispatcherInterceptor {
+public class PersistenceManagerInterceptor extends ResponseInterceptor {
 
 	private PersistenceManagerPool pmp = PersistenceManagerPool.getInstance();
 
-	/* (non-Javadoc)
-	 * @see br.octahedron.cotopaxi.interceptor.ResponseDispatcherInterceptor#finish()
-	 */
 	@Override
 	public void finish() {
 		if (this.pmp.isPersistenceManagerOpened()) {
