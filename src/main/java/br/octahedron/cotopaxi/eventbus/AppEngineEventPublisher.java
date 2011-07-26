@@ -86,7 +86,7 @@ public class AppEngineEventPublisher implements EventPublisher {
 		@Override
 		public void run() {
 			try {
-				Subscriber sub = Injector.createInstance(this.subscriber);
+				Subscriber sub = Injector.getInstance(this.subscriber);
 				log.debug("Publishing event %s to subscriber %s", this.event.getClass(), this.subscriber.getClass());
 				sub.eventPublished(this.event);
 			} catch (Exception e) {
