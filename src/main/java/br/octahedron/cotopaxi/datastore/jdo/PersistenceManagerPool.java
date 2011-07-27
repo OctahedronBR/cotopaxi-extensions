@@ -35,6 +35,17 @@ public class PersistenceManagerPool {
 		return instance;
 	}
 
+	/**
+	 * Closes the current connection to database.
+	 * 
+	 * This method should be used carefully. Use this only when you are doing background tasks.
+	 * After closes the connection any object retrieved from database become to a inconsistent
+	 * state, and shouldn't be used (read or modified) anymore.
+	 */
+	public static void forceClose() {
+		instance.close();
+	}
+
 	// Object stuff
 	private ThreadLocal<PersistenceManager> pool = new ThreadLocal<PersistenceManager>();
 
@@ -48,20 +59,22 @@ public class PersistenceManagerPool {
 	}
 
 	protected void close() {
-		log.debug("Closing PersistenceManager.");
-		PersistenceManager pm = this.pool.get();
-		pm.close();
-		this.pool.remove();
+		if (instance.isPersistenceManagerOpened()) {
+			log.debug("Closing PersistenceManager.");
+			PersistenceManager pm = this.pool.get();
+			pm.close();
+			this.pool.remove();
+		}
 	}
 
 	public PersistenceManager getPersistenceManagerForThread() {
 		log.debug("Getting a PersistenceManager.");
 		PersistenceManager pm = this.pool.get();
-		if ( pm == null || pm.isClosed()) {
+		if (pm == null || pm.isClosed()) {
 			log.debug("Creating a new PersistenceManager.");
 			pm = PMFWrapper.getPersistenceManager();
 			this.pool.set(pm);
 		}
-		return pm; 
+		return pm;
 	}
 }

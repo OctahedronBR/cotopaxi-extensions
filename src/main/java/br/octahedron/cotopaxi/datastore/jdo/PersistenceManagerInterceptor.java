@@ -27,12 +27,8 @@ import br.octahedron.cotopaxi.interceptor.ResponseInterceptor;
  */
 public class PersistenceManagerInterceptor extends ResponseInterceptor {
 
-	private PersistenceManagerPool pmp = PersistenceManagerPool.getInstance();
-
 	@Override
 	public void finish() {
-		if (this.pmp.isPersistenceManagerOpened()) {
-			this.pmp.close();
-		}
+		PersistenceManagerPool.forceClose();
 	}
 }
