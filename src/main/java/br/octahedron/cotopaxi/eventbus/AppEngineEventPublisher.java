@@ -87,7 +87,7 @@ public class AppEngineEventPublisher implements EventPublisher {
 		public void run() {
 			try {
 				Subscriber sub = Injector.getInstance(this.subscriber);
-				log.debug("Publishing event %s to subscriber %s", this.event.getClass(), this.subscriber.getClass());
+				log.debug("Publishing event %s to subscriber %s", this.event.getClass(), this.subscriber);
 				sub.eventPublished(this.event);
 			} catch (Exception e) {
 				log.warning("Unable to deliver event to subscriber: %s", subscriber.getName());
