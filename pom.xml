@@ -63,7 +63,7 @@
 	</distributionManagement>
 	<!-- properties -->
 	<properties>
-		<gae.version>1.5.1</gae.version>
+		<gae.version>1.5.4</gae.version>
 		<project_charset>UTF-8</project_charset>
 	</properties>
 	<!-- repositories -->
