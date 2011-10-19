@@ -18,14 +18,14 @@ package br.octahedron.cotopaxi.datastore.jdo;
 
 import javax.jdo.PersistenceManager;
 
-import br.octahedron.cotopaxi.interceptor.ResponseInterceptor;
+import br.octahedron.cotopaxi.interceptor.FinalizerInterceptor;
 
 /**
  * A {@link ResponseDispatcherInterceptor} for close opened {@link PersistenceManager}.
  * 
  * @author Danilo Queiroz
  */
-public class PersistenceManagerInterceptor extends ResponseInterceptor {
+public class PersistenceManagerInterceptor implements FinalizerInterceptor {
 
 	@Override
 	public void finish() {
