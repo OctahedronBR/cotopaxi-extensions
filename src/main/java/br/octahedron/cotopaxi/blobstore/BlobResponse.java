@@ -21,7 +21,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import br.octahedron.cotopaxi.controller.ControllerResponse;
-import br.octahedron.cotopaxi.view.response.InterceptableResponse;
 import br.octahedron.cotopaxi.view.response.ServletGenericResponse;
 
 import com.google.appengine.api.blobstore.BlobKey;
