@@ -40,6 +40,16 @@ public abstract class GenericDAO<T> {
 	public void setDatastoreFacade(DatastoreFacade datastoreFacade) {
 		this.datastoreFacade = datastoreFacade;
 	}
+	
+	/**
+	 * Creates a new query for this DAO entities.
+	 * 
+	 * @return A new query for entities from this DAO.
+	 */
+	protected Query createQuery() {
+		return this.datastoreFacade.createQueryForClass(this.klass);
+	}
+	
 	/**
 	 * Deletes an object. The given parameter can be the object to be deleted, it means an instance
 	 * of T, or can be the key for the object to be deleted.
@@ -73,6 +83,23 @@ public abstract class GenericDAO<T> {
 	 */
 	public Collection<T> getAll() {
 		return this.datastoreFacade.getObjects(this.klass);
+	}
+
+	/**
+	 * Get all elements which given attribute starts with the given prefix;
+	 * 
+	 * @param prefix the attribute's prefix to be queried
+	 * @param attribute the entity attribute being queried
+	 * 
+	 * 
+	 * @return a list of all entities which attribute starts with the given prefix. If no entity be found, it returns an empty list.
+	 */
+	@SuppressWarnings("unchecked")
+	public Collection<T> getAllStartsWith(String attribute, String prefix) {
+		Query query = this.createQuery();
+		query.setFilter(attribute + ".startsWith(:1)");
+		prefix = (prefix != null ? prefix : "").trim();
+		return (Collection<T>) query.execute(prefix);
 	}
 
 	/**
@@ -116,5 +143,6 @@ public abstract class GenericDAO<T> {
 	public int count() {
 		return this.datastoreFacade.countObjects(this.klass);
 	}
+	
 
 }

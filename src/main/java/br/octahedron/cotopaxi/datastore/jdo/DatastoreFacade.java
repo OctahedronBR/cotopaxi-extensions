@@ -195,22 +195,6 @@ public class DatastoreFacade {
 	}
 	
 	/**
-	 * Query for all entities of the given class with the given attribute starts with the given prefix;
-	 * 
-	 * @param prefix the attribute's prefix to be queried
-	 * @param attribute the entity attribute being queried
-	 * 
-	 * @return a list of all entities which attribute starts with the given prefix. If no entity be found, it returns an empty list.
-	 */
-	@SuppressWarnings("unchecked")
-	public <T> List<T> startsWithQuery(Class<T> klass, String prefix, String attribute) {
-		Query query = this.createQueryForClass(klass);
-		query.setFilter(attribute + ".startsWith(:1)");
-		prefix = (prefix != null ? prefix : "").trim();
-		return (List<T>) query.execute(prefix);
-	}
-
-	/**
 	 * This class is a wrapper to the {@link PersistenceManagerFactory}.
 	 */
 	protected static class PMFWrapper {
