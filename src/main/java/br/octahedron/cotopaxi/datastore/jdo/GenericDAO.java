@@ -18,6 +18,8 @@ package br.octahedron.cotopaxi.datastore.jdo;
 
 import java.util.Collection;
 
+import javax.jdo.Query;
+
 /**
  * An Generic DAO, that provide basic operations for a Type.
  * 
@@ -82,6 +84,19 @@ public abstract class GenericDAO<T> {
 	 */
 	public T get(Object key) {
 		return this.datastoreFacade.getObjectByKey(this.klass, key);
+	}
+	
+	/**
+	 * Creates a new Query on the database for this DAO's class.
+	 * The returned query can be customized by the application to
+	 * find the desired entries in the database.
+	 * 
+	 * @return The created Query
+	 * @see javax.jdo.Query
+	 * @since 1.1
+	 */
+	public Query createQuery() {
+		return this.datastoreFacade.createQueryForClass(klass);
 	}
 
 	/**
