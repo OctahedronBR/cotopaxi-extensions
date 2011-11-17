@@ -42,14 +42,18 @@ public abstract class GenericDAO<T> {
 	}
 	
 	/**
-	 * Creates a new query for this DAO entities.
+	 * Creates a new Query on the database for this DAO's class.
+	 * The returned query can be customized by the application to
+	 * find the desired entries in the database.
 	 * 
-	 * @return A new query for entities from this DAO.
+	 * @return The created Query
+	 * @see javax.jdo.Query
+	 * @since 1.0
 	 */
-	protected Query createQuery() {
-		return this.datastoreFacade.createQueryForClass(this.klass);
+	public Query createQuery() {
+		return this.datastoreFacade.createQueryForClass(klass);
 	}
-	
+
 	/**
 	 * Deletes an object. The given parameter can be the object to be deleted, it means an instance
 	 * of T, or can be the key for the object to be deleted.
@@ -113,19 +117,6 @@ public abstract class GenericDAO<T> {
 		return this.datastoreFacade.getObjectByKey(this.klass, key);
 	}
 	
-	/**
-	 * Creates a new Query on the database for this DAO's class.
-	 * The returned query can be customized by the application to
-	 * find the desired entries in the database.
-	 * 
-	 * @return The created Query
-	 * @see javax.jdo.Query
-	 * @since 1.1
-	 */
-	public Query createQuery() {
-		return this.datastoreFacade.createQueryForClass(klass);
-	}
-
 	/**
 	 * Checks if exists an entity with the given key.
 	 * 
