@@ -37,7 +37,7 @@ public abstract class AbstractAuthorizationInterceptor extends ControllerInterce
 		if (!this.isAnswered()) {
 			String action = auth.actionName();
 			if (CONTROLLER_NAME.equals(action)) {
-				action = this.controllerName();
+				action = this.controllerDescriptor().getControllerName();
 			}
 			this.authorizeUser(action, this.currentUser(), auth.showForbiddenPage());
 		}
