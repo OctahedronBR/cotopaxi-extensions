@@ -52,7 +52,7 @@
 		</developer>
 	</developers>
 	<ciManagement>
-		<system>Jenkins</system>
+		<system>Jenkins@Cloudbees</system>
 		<url>https://cotopaxi.ci.cloudbees.com/</url>
 	</ciManagement>
 	<issueManagement>
@@ -61,25 +61,19 @@
 	</issueManagement>
 	<!-- properties -->
 	<properties>
-		<gae.version>1.6.0</gae.version>
+		<gae.version>1.5.5</gae.version>
 		<project_charset>UTF-8</project_charset>
 	</properties>
 	<!-- repositories -->
 	<repositories>
+		<!-- <repository> <id>octahedron - release</id> <url>http://repository-cotopaxi.forge.cloudbees.com/release/</url> 
+			</repository> -->
 		<repository>
 			<id>octahedron - snapshot</id>
-			<url>http://repository-cotopaxi.forge.cloudbees.com/snapshot/</url>
-		</repository>
-		<repository>
-			<id>octahedron - release</id>
-			<url>http://repository-cotopaxi.forge.cloudbees.com/release/</url>
-		</repository>
-		<repository>
-			<id>mvnsearch</id>
-			<url>http://www.mvnsearch.org/maven2</url>
+			<url>http://repository-cotopaxi.forge.cloudbees.com/snapshot</url>
 		</repository>
 	</repositories>
-	<!-- Build-->
+	<!-- Build -->
 	<build>
 		<defaultGoal>test</defaultGoal>
 		<plugins>
@@ -121,6 +115,13 @@
 	</build>
 	<!-- dependencies -->
 	<dependencies>
+		<!-- Cotopaxi Core -->
+		<dependency>
+			<groupId>br.octahedron.cotopaxi</groupId>
+			<artifactId>core</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- Test Scope -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -140,51 +141,34 @@
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
 			<version>${gae.version}</version>
-			<type>jar</type>
 			<scope>test</scope>
-		</dependency>
-		<!-- Cotopaxi Core -->
-		<dependency>
-			<groupId>br.octahedron.cotopaxi</groupId>
-			<artifactId>core</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<type>jar</type>
-			<scope>provided</scope>
 		</dependency>
 		<!-- GAE Dependencies -->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-stubs</artifactId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
 			<version>${gae.version}</version>
-			<type>jar</type>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-1.0-sdk</artifactId>
+			<artifactId>appengine-api-stubs</artifactId>
 			<version>${gae.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-labs</artifactId>
 			<version>${gae.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.appengine.orm</groupId>
-			<artifactId>datanucleus-appengine</artifactId>
-			<version>1.0.10</version>
 		</dependency>
 		<!-- JDO -->
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jpa_3.0_spec</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
 			<version>1.1.5</version>
-			<type>jar</type>
-			<scope>runtime</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.transaction</groupId>
@@ -193,18 +177,16 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>com.google.appengine.orm</groupId>
+			<artifactId>datanucleus-appengine</artifactId>
+			<version>1.0.9</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jta_1.1_spec</artifactId>
 			<version>1.1.1</version>
 			<type>jar</type>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-jpa_3.0_spec</artifactId>
-			<version>1.1.1</version>
-			<type>jar</type>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
@@ -233,14 +215,18 @@
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-cache</artifactId>
 			<version>1.1.1</version>
-			<type>jar</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jsr107cache</groupId>
 			<artifactId>jsr107cache</artifactId>
 			<version>1.1</version>
-			<type>jar</type>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-jsr107cache</artifactId>
+			<version>${gae.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<!-- Geronimo ServletSpec -->
