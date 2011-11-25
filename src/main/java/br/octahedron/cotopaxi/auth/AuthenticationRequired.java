@@ -21,8 +21,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import br.octahedron.cotopaxi.controller.Controller;
-
 /**
  * This annotation should be used to indicate that a controller method needs authentication.
  * 
