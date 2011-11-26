@@ -186,7 +186,6 @@
 			<artifactId>geronimo-jta_1.1_spec</artifactId>
 			<version>1.1.1</version>
 			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
@@ -199,7 +198,6 @@
 			<groupId>javax.jdo</groupId>
 			<artifactId>jdo2-api</artifactId>
 			<version>2.3-eb</version>
-			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.transaction</groupId>
@@ -215,19 +213,16 @@
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-cache</artifactId>
 			<version>1.1.1</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jsr107cache</groupId>
 			<artifactId>jsr107cache</artifactId>
 			<version>1.1</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-jsr107cache</artifactId>
 			<version>${gae.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 		<!-- Geronimo ServletSpec -->
 		<dependency>
