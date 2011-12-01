@@ -16,6 +16,8 @@
  */
 package br.octahedron.cotopaxi.eventbus;
 
+import static br.octahedron.cotopaxi.inject.Injector.getInstance;
+import br.octahedron.cotopaxi.datastore.namespace.NamespaceManager;
 
 /**
  * Namespace events are events that refers to a given namespace.
@@ -27,15 +29,33 @@ public abstract class NamespaceEvent implements Event {
 	private static final long serialVersionUID = 6843928544469411033L;
 	private String namespace;
 
+	/**
+	 * Creates a namespace event to be processed at the current namespace
+	 */
+	public NamespaceEvent() {
+		try {
+			NamespaceManager namespaceManager = getInstance(NamespaceManager.class);
+			this.namespace = namespaceManager.currentNamespace();
+		} catch (InstantiationException ex) {
+			throw new RuntimeException("NamespaceManager has no implementation defined.", ex);
+		}
+	}
+
+	/**
+	 * Creates a namespace event to be processed at the given namespace
+	 * 
+	 * @param namespace
+	 *            the namespace to process event
+	 */
 	public NamespaceEvent(String namespace) {
 		this.namespace = namespace;
 	}
-	
+
 	/**
 	 * @return the namespace fot this event
 	 */
 	public String getNamespace() {
 		return namespace;
 	}
-	
+
 }

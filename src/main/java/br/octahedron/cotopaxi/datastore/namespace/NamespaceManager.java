@@ -27,6 +27,13 @@ import java.util.List;
  * @author Vítor Avelino - vitoravelino@octahedron.com.br
  */
 public interface NamespaceManager {
+	
+	/**
+	 * Gets the current namespace
+	 * 
+	 * @return the current namespace
+	 */
+	public abstract String currentNamespace();
 
 	/**
 	 * Changes the current namespace to the global namespace.

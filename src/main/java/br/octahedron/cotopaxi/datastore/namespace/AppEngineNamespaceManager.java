@@ -34,10 +34,21 @@ import com.google.appengine.api.datastore.Query;
  * @author Danilo Queiroz
  */
 public class AppEngineNamespaceManager implements br.octahedron.cotopaxi.datastore.namespace.NamespaceManager {
-	
+
 	private static final Log log = new Log(NamespaceManager.class);
-	private final String GLOBAL_NAMESPACE = ""; 
+	private final String GLOBAL_NAMESPACE = "";
 	private final ThreadLocal<String> previousNamespaces = new ThreadLocal<String>();
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.octahedron.cotopaxi.datastore.namespace.NamespaceManager#currentNamespace()
+	 */
+	@Override
+	public String currentNamespace() {
+		String current = NamespaceManager.get();
+		return (current != null) ? current : GLOBAL_NAMESPACE;
+	}
 
 	/**
 	 * Changes current namespace to the given one, storing the actual namespace to be restored
@@ -63,14 +74,14 @@ public class AppEngineNamespaceManager implements br.octahedron.cotopaxi.datasto
 	 */
 	public void changeToPreviousNamespace() {
 		String previous = previousNamespaces.get();
-		if (previous!= null) {
+		if (previous != null) {
 			log.debug("Changing namespace from global to original namespace: %s", previous);
 			NamespaceManager.set(previous);
 		} else {
 			log.debug("No previous namespace stored, keeping the actual one.");
 		}
 	}
-	
+
 	/**
 	 * Retrieves all namespaces created to domains on application
 	 */
@@ -78,27 +89,27 @@ public class AppEngineNamespaceManager implements br.octahedron.cotopaxi.datasto
 		Query q = new Query(Query.NAMESPACE_METADATA_KIND);
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		List<String> results = new ArrayList<String>();
-	    for (com.google.appengine.api.datastore.Entity e : ds.prepare(q).asIterable()) {
-	        // A zero numeric id is used for the non-default namespaces
-	        if (e.getKey().getId() == 0) { 
-	        	results.add(e.getKey().getName());
-	        }
-	    }
-	    log.debug("Quering all namespaces. Found %d namespaces", results.size());
+		for (com.google.appengine.api.datastore.Entity e : ds.prepare(q).asIterable()) {
+			// A zero numeric id is used for the non-default namespaces
+			if (e.getKey().getId() == 0) {
+				results.add(e.getKey().getName());
+			}
+		}
+		log.debug("Quering all namespaces. Found %d namespaces", results.size());
 		return results;
 	}
-	
+
 	public boolean exists(String namespace) {
 		Query q = new Query(Query.NAMESPACE_METADATA_KIND);
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-	    for (com.google.appengine.api.datastore.Entity e : ds.prepare(q).asIterable()) {
-	        // A zero numeric id is used for the non-default namespaces
-	        if (e.getKey().getId() == 0) { 
-	        	if (e.getKey().getName().equalsIgnoreCase(namespace)) {
-	        		return true;
-	        	}
-	        }
-	    }
+		for (com.google.appengine.api.datastore.Entity e : ds.prepare(q).asIterable()) {
+			// A zero numeric id is used for the non-default namespaces
+			if (e.getKey().getId() == 0) {
+				if (e.getKey().getName().equalsIgnoreCase(namespace)) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 }
