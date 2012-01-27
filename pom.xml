@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.octahedron.cotopaxi</groupId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<artifactId>extensions</artifactId>
 	<packaging>jar</packaging>
 	<!-- Project Information -->
@@ -66,12 +66,16 @@
 	</properties>
 	<!-- repositories -->
 	<repositories>
-		<!-- <repository> <id>octahedron - release</id> <url>http://repository-cotopaxi.forge.cloudbees.com/release/</url> 
-			</repository> -->
+		<repository> 
+			<id>octahedron - release</id> 
+			<url>http://repository-cotopaxi.forge.cloudbees.com/release/</url> 
+		</repository>
+		<!--
 		<repository>
 			<id>octahedron - snapshot</id>
 			<url>http://repository-cotopaxi.forge.cloudbees.com/snapshot</url>
 		</repository>
+		-->
 	</repositories>
 	<!-- Build -->
 	<build>
