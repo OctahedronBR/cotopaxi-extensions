@@ -61,7 +61,7 @@
 	</issueManagement>
 	<!-- properties -->
 	<properties>
-		<gae.version>1.5.5</gae.version>
+		<gae.version>1.6.3.1</gae.version>
 		<project_charset>UTF-8</project_charset>
 	</properties>
 	<!-- repositories -->
@@ -134,7 +134,7 @@
 		<dependency>
 			<groupId>br.octahedron.cotopaxi</groupId>
 			<artifactId>core</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- Test Scope -->
