@@ -31,22 +31,20 @@ import br.octahedron.cotopaxi.interceptor.ControllerInterceptor;
 public abstract class AbstractAuthenticationInterceptor extends ControllerInterceptor {
 
 	@Override
+	public final Class<? extends Annotation> getInterceptorAnnotation() {
+		return AuthenticationRequired.class;
+	}
+
+	@Override
 	public final void execute(Annotation ann) {
 		AuthenticationLevel level = AuthenticationLevel.AUTHENTICATE_AND_VALID;
-		if (ann instanceof AuthenticationRequired) {
-			AuthenticationRequired auth = (AuthenticationRequired) ann;
-			level = auth.authenticationLevel();
-		}
+		AuthenticationRequired auth = (AuthenticationRequired) ann;
+		level = auth.authenticationLevel();
 
 		this.checkUserAuthentication();
 		if (level == AuthenticationLevel.AUTHENTICATE_AND_VALID && !this.isAnswered()) {
 			this.checkUserValidation();
 		}
-	}
-
-	@Override
-	public final Class<? extends Annotation> getInterceptorAnnotation() {
-		return AuthenticationRequired.class;
 	}
 
 	/**
@@ -55,7 +53,8 @@ public abstract class AbstractAuthenticationInterceptor extends ControllerInterc
 	 * You should handle all authentication check operation, and redirect the user, if necessary
 	 * (e.g.: if user not logged). For this you can use the method <code>redirect</code>.
 	 * 
-	 * If the user is authenticate, you should call the method <code>currentUser(String username)</code>
+	 * If the user is authenticate, you should call the method
+	 * <code>currentUser(String username)</code>
 	 */
 	protected abstract void checkUserAuthentication();
 
