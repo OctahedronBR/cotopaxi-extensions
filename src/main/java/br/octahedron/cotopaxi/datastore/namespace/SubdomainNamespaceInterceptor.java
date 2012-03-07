@@ -16,10 +16,15 @@
  */
 package br.octahedron.cotopaxi.datastore.namespace;
 
-
 /**
- * @author Vítor Avelino - vitoravelino@octahedron.com.br
+ * A simple Controller Interceptor that changes the current namespace for the current subdomain.
  * 
+ * For exemple, if you are accessing http://custom.example.com, it will change the current namespace
+ * for "custom".
+ * 
+ * @see AbstractNamespaceInterceptor
+ * 
+ * @author Vítor Avelino - vitoravelino@octahedron.com.br
  */
 public class SubdomainNamespaceInterceptor extends AbstractNamespaceInterceptor {
 
