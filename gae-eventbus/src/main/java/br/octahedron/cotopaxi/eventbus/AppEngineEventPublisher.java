@@ -29,7 +29,28 @@ import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
 
 /**
- * An {@link EventPublisher} implementation using Google App Engine Tasks Queues Service.
+ * An {@link EventPublisher} implementation using Google App Engine Tasks Queues
+ * Service. See {@linkplain https
+ * ://developers.google.com/appengine/docs/java/taskqueue
+ * /overview-push#Deferred_Tasks} for more information.
+ * 
+ * This eventPublish uses a GAE Queue named "eventbus" to publish the events, so
+ * that is necessary to configure the Queue at your queue.xml file. See the
+ * configuration example below.
+ * 
+ * queue.xml file
+ * 
+ * <pre>
+ * 	<?xml version="1.0" encoding="utf-8"?>
+ * 	<queue-entries>
+ * 		<queue>
+ * 			<name>eventbus</name>
+ * 			<rate>10/s</rate>
+ * 			<bucket-size>5</bucket-size>
+ * 			<mode>push</mode>
+ * 		</queue>
+ * 	</queue-entries>
+ * </pre>
  * 
  * @author Danilo Queiroz
  */
@@ -50,7 +71,8 @@ public class AppEngineEventPublisher implements EventPublisher {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see br.octahedron.straight.eventbus.Enqueuer#enqueue(java.util.Collection,
+	 * @see
+	 * br.octahedron.straight.eventbus.Enqueuer#enqueue(java.util.Collection,
 	 * br.octahedron.straight.eventbus.Event)
 	 */
 	public void publish(Collection<Class<? extends Subscriber>> subscribers, Event event) {
@@ -64,7 +86,8 @@ public class AppEngineEventPublisher implements EventPublisher {
 	}
 
 	/**
-	 * A simple {@link DeferredTask} that publishes an event to a {@link Subscriber}
+	 * A simple {@link DeferredTask} that publishes an event to a
+	 * {@link Subscriber}
 	 */
 	protected static class PublishTask implements DeferredTask, Runnable, Serializable {
 

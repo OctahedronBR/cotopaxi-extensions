@@ -4,13 +4,13 @@
 	<parent>
 		<artifactId>extensions</artifactId>
 		<groupId>br.octahedron.cotopaxi</groupId>
-		<version>2.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
+		<version>1.1-SNAPSHOT</version>
+		<relativePath>${project.parent.basedir}</relativePath>
 	</parent>
 
 	<groupId>br.octahedron.cotopaxi.extensions</groupId>
+	<version>${project.parent.version}</version>
 	<artifactId>datastore</artifactId>
-        <version>${build.version}</version>
 
 	<build>
 		<plugins>
@@ -25,52 +25,33 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
 		<!-- JDO -->
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-jpa_3.0_spec</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
-			<version>1.1.5</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>transaction-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-jta_1.1_spec</artifactId>
-			<version>1.1.1</version>
-			<type>jar</type>
+			<version>[3.0, 3.1)</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-jpa</artifactId>
-			<version>1.1.5</version>
-			<type>jar</type>
+			<artifactId>datanucleus-api-jdo</artifactId>
+			<version>[3.0, 3.1)</version>
+			<optional>true</optional>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.jdo</groupId>
-			<artifactId>jdo2-api</artifactId>
-			<version>2.3-eb</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>transaction-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.geronimo.specs</groupId>
-					<artifactId>geronimo-jpa_3.0_spec</artifactId>
-				</exclusion>
-			</exclusions>
+			<artifactId>jdo-api</artifactId>
+			<version>[3.0, 4.0)</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-cache</artifactId>
+			<version>[3.0, 3.1)</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>

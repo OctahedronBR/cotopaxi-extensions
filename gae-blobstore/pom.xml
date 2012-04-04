@@ -4,13 +4,13 @@
 	<parent>
 		<artifactId>extensions</artifactId>
 		<groupId>br.octahedron.cotopaxi</groupId>
-		<version>2.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
+		<version>1.1-SNAPSHOT</version>
+		<relativePath>${project.parent.basedir}</relativePath>
 	</parent>
 
 	<groupId>br.octahedron.cotopaxi.extensions</groupId>
+	<version>${project.parent.version}</version>
 	<artifactId>gae-blobstore</artifactId>
-	<version>${build.version}</version>
 
 	<build>
 		<plugins>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>br.octahedron.cotopaxi.platform</groupId>
 			<artifactId>gae-runtime</artifactId>
-			<version>1.6.3.1</version>
+			<version>1.6.4</version>
 			<type>pom</type>
 		</dependency>
 	</dependencies>

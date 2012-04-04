@@ -1,18 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>extensions</artifactId>
-    <groupId>br.octahedron.cotopaxi</groupId>
-    <version>2.0-SNAPSHOT</version>
-    <relativePath>..</relativePath>
-  </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>extensions</artifactId>
+		<groupId>br.octahedron.cotopaxi</groupId>
+		<version>1.1-SNAPSHOT</version>
+		<relativePath>${project.parent.basedir}</relativePath>
+	</parent>
 
-  <version>${build.version}</version>
-  
-  <artifactId>gae-eventbus</artifactId>
-  <groupId>br.octahedron.cotopaxi.extensions</groupId>
-  
-  	<build>
+	<groupId>br.octahedron.cotopaxi.extensions</groupId>
+	<version>${project.parent.version}</version>
+	<artifactId>gae-eventbus</artifactId>
+
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -25,18 +25,18 @@
 			</plugin>
 		</plugins>
 	</build>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>br.octahedron.cotopaxi.platform</groupId>
-  		<artifactId>gae-runtime</artifactId>
-  		<version>1.6.3.1</version>
-  		<type>pom</type>
-  	</dependency>
-  	<dependency>
-  		<groupId>br.octahedron.cotopaxi.extensions</groupId>
-  		<artifactId>eventbus</artifactId>
-  		<version>${build.version}</version>
-  	</dependency>
-  </dependencies>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.octahedron.cotopaxi.platform</groupId>
+			<artifactId>gae-runtime</artifactId>
+			<version>1.6.4</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>br.octahedron.cotopaxi.extensions</groupId>
+			<artifactId>eventbus</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
 </project>

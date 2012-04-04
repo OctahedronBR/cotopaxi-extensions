@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.octahedron.cotopaxi</groupId>
-	<version>2.0-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
 	<artifactId>extensions</artifactId>
 	<packaging>pom</packaging>
 	<!-- Project Information -->
@@ -62,8 +62,6 @@
 	<!-- properties -->
 	<properties>
 		<ctpx.core.version>1.1-SNAPSHOT</ctpx.core.version>
-		<gae.version>1.6.3.1</gae.version>
-		<build.version>2.0-SNAPSHOT</build.version>
 		<project_charset>UTF-8</project_charset>
 	</properties>
 	<!-- repositories -->
@@ -86,18 +84,6 @@
 				<executions>
 					<execution>
 						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
@@ -156,15 +142,15 @@
 	</dependencies>
 	<modules>
 		<module>gae-runtime</module>
-		<module>gzip</module>
-		<module>subdomain-utils</module>
+		<module>eventbus</module>
+		<module>gae-eventbus</module>
+		<module>datastore</module>
+		<module>gae-datastore</module>
 		<module>abstract-auth</module>
 		<module>google-auth</module>
 		<module>gae-blobstore</module>
-		<module>datastore</module>
-		<module>gae-datastore</module>
-		<module>eventbus</module>
-		<module>gae-eventbus</module>
+		<module>subdomain-utils</module>
 		<module>namespace-eventbus</module>
+		<module>gzip</module>
 	</modules>
 </project>

@@ -4,13 +4,13 @@
 	<parent>
 		<artifactId>extensions</artifactId>
 		<groupId>br.octahedron.cotopaxi</groupId>
-		<version>2.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
+		<version>1.1-SNAPSHOT</version>
+		<relativePath>${project.parent.basedir}</relativePath>
 	</parent>
 
 	<groupId>br.octahedron.cotopaxi.extensions</groupId>
+	<version>${project.parent.version}</version>
 	<artifactId>namespace-eventbus</artifactId>
-	<version>${build.version}</version>
 
 	<build>
 		<plugins>
@@ -30,12 +30,12 @@
 		<dependency>
 			<groupId>br.octahedron.cotopaxi.extensions</groupId>
 			<artifactId>datastore</artifactId>
-			<version>${build.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>br.octahedron.cotopaxi.extensions</groupId>
 			<artifactId>eventbus</artifactId>
-			<version>${build.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
 </project>
