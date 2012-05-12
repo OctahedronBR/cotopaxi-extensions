@@ -8,13 +8,13 @@
 		<relativePath>${project.parent.basedir}</relativePath>
 	</parent>
 
-	<version>1.6.4</version>
+	<version>1.6.5</version>
 	<groupId>br.octahedron.cotopaxi.platform</groupId>
 	<artifactId>gae-runtime</artifactId>
 	<packaging>pom</packaging>
 
 	<properties>
-		<gae.version>1.6.4</gae.version>
+		<gae.version>1.6.5</gae.version>
 	</properties>
 	
 	<dependencies>
