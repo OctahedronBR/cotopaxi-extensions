@@ -1,0 +1,13 @@
+!br.octahedron.cotopaxi.datastore.test.User
+name: Danilo Queiroz
+address:
+  !br.octahedron.cotopaxi.datastore.test.Address
+  streetName: Avenida Cabo Branco
+  zipcode: 58045
+---
+!br.octahedron.cotopaxi.datastore.test.User
+name: Vitor Avelino
+address:
+  !br.octahedron.cotopaxi.datastore.test.Address
+  streetName: Rua Augusta
+  zipcode: 00000  

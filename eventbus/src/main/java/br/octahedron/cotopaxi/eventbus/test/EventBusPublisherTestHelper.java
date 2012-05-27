@@ -1,4 +1,4 @@
-package br.octahedron.cotopaxi.eventbus;
+package br.octahedron.cotopaxi.eventbus.test;
 
 import static br.octahedron.cotopaxi.inject.DependencyManager.registerDependency;
 import static br.octahedron.cotopaxi.inject.DependencyManager.registerImplementation;
@@ -6,6 +6,11 @@ import static br.octahedron.cotopaxi.inject.DependencyManager.removeImplementati
 
 import java.util.Collection;
 
+import br.octahedron.cotopaxi.eventbus.Event;
+import br.octahedron.cotopaxi.eventbus.EventBus;
+import br.octahedron.cotopaxi.eventbus.EventPublisher;
+import br.octahedron.cotopaxi.eventbus.Subscriber;
+import br.octahedron.cotopaxi.eventbus.ThreadPoolEventPublisher;
 import br.octahedron.cotopaxi.inject.Injector;
 import br.octahedron.cotopaxi.test.CotopaxiTestHelper;
 import br.octahedron.util.Log;

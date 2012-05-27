@@ -23,7 +23,7 @@
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
 			<version>${gae.version}</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 		<!-- GAE Dependencies -->
 		<dependency>

@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>br.octahedron.cotopaxi.platform</groupId>
 			<artifactId>gae-runtime</artifactId>
-			<version>1.6.4</version>
+			<version>1.6.6</version>
 			<type>pom</type>
 		</dependency>
 	</dependencies>

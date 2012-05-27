@@ -14,15 +14,21 @@
  *  You should have received a copy of the Lesser GNU General Public License
  *  along with Cotopaxi. If not, see <http://www.gnu.org/licenses/>.
  */
-package br.octahedron.cotopaxi.datastore;
+package br.octahedron.cotopaxi.datastore.test;
 
+import static br.octahedron.cotopaxi.datastore.test.Fixtures.load;
 import static br.octahedron.cotopaxi.inject.DependencyManager.registerImplementation;
+
+import java.io.IOException;
+
 import br.octahedron.cotopaxi.datastore.jdo.DatastoreFacade;
 import br.octahedron.cotopaxi.datastore.jdo.GenericDAO;
 import br.octahedron.cotopaxi.datastore.namespace.NamespaceManager;
 import br.octahedron.cotopaxi.inject.DependencyManager;
 import br.octahedron.cotopaxi.inject.Inject;
 import br.octahedron.cotopaxi.test.CotopaxiTestHelper;
+
+
 
 /**
  * This class provides utility methods to create and register mocks for
@@ -58,6 +64,12 @@ import br.octahedron.cotopaxi.test.CotopaxiTestHelper;
  */
 public class DatastoreTestHelper {
 
+	public static void setUpFixturesDatastore(DatastoreLoader dsLoader, String... fixtures) throws IOException {
+		dsLoader.load();
+		DatastoreFacade ds = dsLoader.datastoreFacade();
+		load(ds, fixtures);
+	}
+
 	/**
 	 * Creates and register a mock for {@link DatastoreFacade}
 	 * 
@@ -78,7 +90,8 @@ public class DatastoreTestHelper {
 	 * @param testHelper
 	 *            The {@link CotopaxiTestHelper} that will manage the created
 	 *            mock
-	 * @param daoKlass The {@link GenericDAO} subclass to be mocked.
+	 * @param daoKlass
+	 *            The {@link GenericDAO} subclass to be mocked.
 	 * 
 	 * @return The {@link GenericDAO} mock object.
 	 */
