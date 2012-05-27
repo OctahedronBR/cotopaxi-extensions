@@ -66,10 +66,12 @@
 	</properties>
 	<!-- repositories -->
 	<repositories>
-		<!-- <repository> <id>octahedron - release</id> <url>http://repository-cotopaxi.forge.cloudbees.com/release/</url> 
-			</repository> -->
+		<repository> 
+			<id>Cotpaxi - Release</id>
+			<url>http://repository-cotopaxi.forge.cloudbees.com/release/</url> 
+		</repository>
 		<repository>
-			<id>octahedron - snapshot</id>
+			<id>Cotopaxi - Snapshot</id>
 			<url>http://repository-cotopaxi.forge.cloudbees.com/snapshot</url>
 		</repository>
 	</repositories>

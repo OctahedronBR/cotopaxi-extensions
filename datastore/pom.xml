@@ -53,5 +53,11 @@
 			<version>[3.0, 3.1)</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.esotericsoftware.yamlbeans</groupId>
+			<artifactId>yamlbeans</artifactId>
+			<version>1.06</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 </project>
