@@ -28,20 +28,41 @@ import br.octahedron.cotopaxi.inject.DependencyManager;
 import br.octahedron.cotopaxi.inject.Inject;
 import br.octahedron.cotopaxi.test.CotopaxiTestHelper;
 
-
-
 /**
- * This class provides utility methods to create and register mocks for
- * Datastore classes.
+ * This class provides utility methods to create tests using the datastore. You
+ * can setup two different kind of tests using the data base, using fixtures or
+ * using the mocks for DAOs objects or for the {@link DatastoreFacade}.
  * 
- * These mocks are intent to be used by tests, providing a easy way to create
- * mocks to be used while writing tests usign {@link CotopaxiTestHelper}
- * utilities.
+ * <strong>Using fixtures</strong>
  * 
- * Besides create the mocks it self, that isn't a hard task, it also register
- * the mocks as the reference implementation at the {@link DependencyManager}.
- * It makes mocks by transparently inject on dependent class using
- * {@link Inject} annotation.
+ * You can use fixtures to populate your test database with predefined data, to
+ * be used by your tests.
+ * 
+ * To use fixtures you'll need:
+ * 
+ * - The fixtures objects description: Objects should be described in YAML
+ * format, as describe at {@link Fixtures}.
+ * 
+ * - A {@link DatastoreLoader} - This entity is responsible by setup the test
+ * datastore and configure your application to use it. In most cases, this will
+ * be provided with the datastore specific implementation extension.
+ * 
+ * To use fixtures, call the method
+ * {@link DatastoreTestHelper#setUpFixturesDatastore(DatastoreLoader, String...)}
+ * on your test setup method.
+ * 
+ * <strong>Using mocks</strong>
+ * 
+ * You can use mock to simulate the behavior of the DAO objects or of the
+ * {@link DatastoreFacade}. To see more details of how setup the expected
+ * behavior of your mock objects, <a href="http://easymock.org/EasyMock3_1_Documentation.html">
+ *  Easymock documentation</a>.
+ * 
+ * Instead of create the mock by yourself, you should relay on the methods
+ * provided by this helper to do this. Besides create the mocks it self, that
+ * isn't a hard task, it also register the mocks as the reference implementation
+ * at the {@link DependencyManager}. It makes mocks by transparently inject on
+ * dependent class using {@link Inject} annotation.
  * 
  * For example, assuming you are writing a test case for a controller and had
  * extend {@link CotopaxiTestHelper}, to create and manage a Datastore mock
@@ -64,6 +85,22 @@ import br.octahedron.cotopaxi.test.CotopaxiTestHelper;
  */
 public class DatastoreTestHelper {
 
+	/**
+	 * Setup the fixtures to be used by tests. It setups the test database and
+	 * then load the fixtures to be used.
+	 * 
+	 * @param dsLoader
+	 *            The {@link DatastoreLoader} for the test datastore.
+	 * @param fixtures
+	 *            The fixtures YAML files. This should be the path for the
+	 *            files, relative to your resources dir. Eg.: If you fixture
+	 *            file is placed under the
+	 *            test/resoures/fixtures/myFixture.yaml, you should pass
+	 *            "fixtures/myFixture.yaml".
+	 * 
+	 * @throws IOException
+	 *             if any error occurs during the setup.
+	 */
 	public static void setUpFixturesDatastore(DatastoreLoader dsLoader, String... fixtures) throws IOException {
 		dsLoader.load();
 		DatastoreFacade ds = dsLoader.datastoreFacade();

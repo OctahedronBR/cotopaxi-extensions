@@ -22,6 +22,8 @@ public interface DatastoreLoader {
 	 * to use the proper datastore, etc.
 	 */
 	public void load();
+	
+	// TODO should it have a destroy?
 
 	/**
 	 * Gets the facade for the loaded datastore. This method should be invoked

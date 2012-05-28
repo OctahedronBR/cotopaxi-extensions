@@ -15,6 +15,43 @@ import com.esotericsoftware.yamlbeans.YamlReader;
 /**
  * Provides method do handle the fixtures to the datastore.
  * 
+ * Fixtures should be written in YAML format, as described on 
+ * <a href="http://yamlbeans.sourceforge.net/">YAMLBeans</a> site.
+ * 
+ * You must indicate the class objects to be loaded by using
+ * "![java name]" before start to describe your object. Eg.:
+ * <pre>
+ * !com.example.User
+ * name: Someone
+ * age: 42
+ * ...
+ * </pre>
+ * 
+ * To describe several objects, without any relationship between them,
+ * you should separate them using "---". Eg.:
+ * <pre>
+ * !com.example.User
+ * name: Someone
+ * age: 42
+ * ...
+ * ---
+ * !com.example.Company
+ * name: ACME S/A
+ * </pre>
+ * 
+ * You can also have relationships between classes, as shown bellow:
+ * 
+ * <pre>
+ * !com.example.User
+ * name: Someone
+ * age: 42
+ * lastEmployers:
+ * 	-	!com.example.Company
+ * 		name: ACME S/A
+ * 	-	!com.example.Company
+ * 		name: XPTO Co.
+ * </pre>
+ * 
  * @author Danilo Queiroz - dpenna.queiroz@gmail.com
  */
 public class Fixtures {

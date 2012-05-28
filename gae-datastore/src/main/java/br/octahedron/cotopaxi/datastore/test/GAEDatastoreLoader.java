@@ -7,8 +7,11 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 /**
- * @author Danilo Queiroz - dpenna.queiroz@gmail.com
+ * Setups a in-memory datastore using the LocalDatastoreServiceTestConfig.
  * 
+ * @see DatastoreLoader
+ * 
+ * @author Danilo Queiroz - dpenna.queiroz@gmail.com
  */
 public class GAEDatastoreLoader implements DatastoreLoader {
 
